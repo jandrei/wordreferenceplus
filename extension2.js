@@ -6,8 +6,8 @@ div_bottoes.style = "display: block; margin-left: auto; margin-right: auto; widt
 
 var ifrm = document.createElement("iframe");
 ifrm.setAttribute("src", "https://jandrei.github.io/wordreferenceplus/");
-ifrm.style.width = "100%";
-ifrm.style.height = "100%";
+ifrm.style.width = "80px";
+ifrm.style.height = "30px";
 ifrm.frameBorder="0";
 div_bottoes.appendChild(ifrm);
 listen_widget.appendChild(div_bottoes);
