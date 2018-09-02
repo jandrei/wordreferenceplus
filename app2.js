@@ -52,18 +52,68 @@ play.onclick = function() {
   console.log(status);
 };
 
-function play_record() {
-  record.src = recording_img;
+// function play_record() {
+//   record.src = recording_img;
+// }
+
+// function stop_record() {
+//   record.src = record_img;
+// }
+
+// function play_music() {
+//   play.src = stop_img;
+// }
+
+// function stop_music() {
+//   play.src = play_img;
+// }
+
+var mediaRecorder = null;
+var audioChunks = [];
+var audio = null;
+
+function play_record(){
+    var constraints = window.constraints = {
+        audio: true,
+        video: false
+      };
+    
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then(function r(stream){
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.start();
+  
+        audioChunks = [];
+        mediaRecorder.addEventListener("dataavailable", event => {
+            audioChunks.push(event.data);
+        });
+  
+        mediaRecorder.addEventListener("stop", () => {
+            const audioBlob = new Blob(audioChunks);
+            const audioUrl = URL.createObjectURL(audioBlob);
+            audio = new Audio(audioUrl);
+            //audio.play();
+        });
+  
+        setTimeout(() => {
+            if (status =='gravando' ){
+                mediaRecorder.stop();
+            }
+        }, 10000);
+    })
+    .catch(function(err) {
+        console.log(err)
+    });;
 }
 
 function stop_record() {
-  record.src = record_img;
+  mediaRecorder.stop();
 }
 
 function play_music() {
-  play.src = stop_img;
+  audio.play();
 }
 
 function stop_music() {
-  play.src = play_img;
+  audio.stop();
 }
