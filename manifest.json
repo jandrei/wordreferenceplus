@@ -5,7 +5,7 @@
   "content_scripts": [
     {
       "matches": ["*://*.wordreference.com/*"],
-      "js": ["chrome_extension.js"]
+      "js": ["extension2.js"]
     }
   ]
 }
