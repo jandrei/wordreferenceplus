@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+  "name": "To Give Word Reference an Plus",
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "matches": ["*://*.wordreference.com/*"],
+      "js": ["chrome_extension.js"]
+    }
+  ]
+}
